@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1749594368863" clover="3.2.0">
+  <project timestamp="1749594368863" name="All files">
+    <metrics statements="6" coveredstatements="6" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="1" elements="8" coveredelements="7" complexity="0" loc="6" ncloc="6" packages="1" files="1" classes="1"/>
+    <file name="hash.ts" path="/Users/billel/AI/amplifyxa-uid2/src/hash.ts">
+      <metrics statements="6" coveredstatements="6" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="7" count="1" type="stmt"/>
+      <line num="8" count="4" type="cond" truecount="0" falsecount="1"/>
+      <line num="9" count="4" type="stmt"/>
+      <line num="10" count="4" type="stmt"/>
+      <line num="11" count="4" type="stmt"/>
+    </file>
+  </project>
+</coverage>
