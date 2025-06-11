@@ -2,38 +2,31 @@ name: Release
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
+
+permissions:            # grant write scopes to the built-in token
+  contents: write
+  issues:   write
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      # 1️⃣ Full checkout – history + tags
-      - name: Checkout
+      - name: Checkout full history
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0          # required by semantic-release
-          # persist-credentials: false   # uncomment if you prefer SSH + PAT
+          fetch-depth: 0
 
-      # 2️⃣ (optional) Add an SSH key if you want to push via SSH instead of HTTPS
-      # - name: Add SSH key
-      #   uses: webfactory/ssh-agent@v0.9.0
-      #   with:
-      #     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      # 3️⃣ Node toolchain
       - name: Use Node 18
         uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: npm
 
-      # 4️⃣ Install, test, build
       - run: npm ci
       - run: npm run build
 
-      # 5️⃣ Release ✨
       - name: Semantic release
-        run: npx semantic-release --config .release-config.json --debug
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # OK for releases & tags
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release --debug   # ← no --config flag
