@@ -1,8 +1,10 @@
 #!/usr/bin/env node
+/* eslint-disable no-console, security/detect-object-injection */
 import { readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { hash, verify } from '../src/index.js';
+import { createRequire } from 'module';
 const [, , cmd, ...args] = process.argv;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -46,9 +48,14 @@ switch (cmd) {
         break;
     }
     case 'rotate': {
-        const buckets = args[0] || '1000000';
-        // eslint-disable-next-line global-require, import/no-dynamic-require
-        await import('../src/generateSalts.js').then((m) => m.default?.(Number.parseInt(buckets, 10))).catch(() => { });
+        (async () => {
+            const buckets = args[0] || '1000000';
+            /* eslint-disable global-require, import/no-dynamic-require */
+            const require = createRequire(import.meta.url);
+            const { run } = require('../dist/src/generateSalts.js');
+            run(Number.parseInt(buckets, 10));
+            /* eslint-enable */
+        })();
         break;
     }
     default:

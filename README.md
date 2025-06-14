@@ -1,6 +1,6 @@
 # @amplifyxa/uid2
 
-Private UID2 hashing library for AmplifyXA services.
+UID2 hashing library for AmplifyXA services.
 
 ## Features
 
@@ -16,7 +16,7 @@ Private UID2 hashing library for AmplifyXA services.
 Add as Git dependency until public registry publish:
 
 ```sh
-pnpm add "@amplifyxa/uid2@git+ssh://git@github.com/amplifyxa/uid2.git#v0.1.0"
+pnpm add "@amplifyxa/uid2@git+ssh://git@github.com/bilLkarkariy/amplifyxa-uid2.git#v0.1.0"
 ```
 
 ## Usage
